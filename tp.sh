@@ -14,7 +14,7 @@ done
 # pngquant 48 game/assets/images/raw/game-0.png --force
 
 # and rename temp files
-ls game/assets/images/raw/*-fs8.png | sed -e 'p;s/-fs8.png/.png/' | xargs -n2 mv
+#ls game/assets/images/raw/*-fs8.png | sed -e 'p;s/-fs8.png/.png/' | xargs -n2 mv
 
 # move all temp files to assets/images
 mv game/assets/images/raw/*.png game/assets/images/
