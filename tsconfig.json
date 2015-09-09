@@ -1,0 +1,47 @@
+{
+    "version": "1.5.3",
+    "command": "tsc",
+    "compileOnSave": false,
+    "compilerOptions": {
+        "target": "es5",
+        "experimentalDecorators": true,
+        "module": "commonjs",
+        "declaration": false,
+        "noImplicitAny": false,
+        "removeComments": true,
+        "noLib": false,
+        "outDir": "/dev/null"
+    },
+    "filesGlob": [
+        "./game/src/**/*.ts",
+        "./node_modules/tlh-*/**/*.d.ts"
+    ],
+    "files": [
+        "./game/src/animations/fadeInOut.ts",
+        "./game/src/animations/slideInOutTop.ts",
+        "./game/src/animations/zoomInOut.ts",
+        "./game/src/api.ts",
+        "./game/src/assetList.ts",
+        "./game/src/components/common/background.ts",
+        "./game/src/components/common/buttons/social.ts",
+        "./game/src/fonts.ts",
+        "./game/src/game.ts",
+        "./game/src/i18n.ts",
+        "./game/src/init.ts",
+        "./game/src/layers.ts",
+        "./game/src/layers/bottom.ts",
+        "./game/src/layers/middle.ts",
+        "./game/src/layers/overlay.ts",
+        "./game/src/layers/top.ts",
+        "./game/src/loop.ts",
+        "./game/src/plugins/debugTrigger.ts",
+        "./game/src/plugins/fullScreen.ts",
+        "./game/src/plugins/soundScreen.ts",
+        "./game/src/scenes/lobby.ts",
+        "./game/src/scenes/match.ts",
+        "./game/src/scenes/standings.ts",
+        "./game/src/scenes/welcome.ts",
+        "./game/src/viewPort.ts",
+        "./game/src/world.ts"
+    ]
+}

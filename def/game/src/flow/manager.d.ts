@@ -1,0 +1,2 @@
+declare module GAME.FLOW {
+}

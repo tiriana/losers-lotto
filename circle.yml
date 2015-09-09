@@ -1,0 +1,9 @@
+deployment:
+  dev:
+    branch: dev
+    heroku:
+      appname: losers-lotto-dev
+  master:
+    branch: master
+    heroku:
+      appname: losers-lotto
