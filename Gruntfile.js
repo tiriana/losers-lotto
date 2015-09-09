@@ -152,7 +152,12 @@ module.exports = function (grunt) {
             coverage: {
                 configFile: 'karma.conf.js',
                 options: {
-                    files: ['node_modules/phantomjs-polyfill/bind-polyfill.js', 'build/game.min.js', 'test/**/*.js'],
+                    files: [
+                        'node_modules/phantomjs-polyfill/bind-polyfill.js',
+                        'build/game.min.js',
+                        'test/**/*.js',
+                        { pattern: 'game/assets/**/*', included: false }
+                    ],
                     preprocessors: ['build/game.min.js'].reduce(function (preprocessors, file) {
                         preprocessors[file] = 'coverage';
                         return preprocessors;

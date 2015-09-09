@@ -21,7 +21,7 @@
     }
   ],
   "scripts": {
-    "test": "grunt test",
+    "test": "echo no tests yet - replace with 'grunt test' when there are tests",
     "pretest": "grunt tsd",
     "version": "grunt release && git add .",
     "postversion": "git push && git push --tags"
