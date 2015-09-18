@@ -8,5 +8,4 @@ var gameApi = new GameApiRemote(
     '459d2e60-ff41-4237-937c-f5a2242dcafe',
     null);
 
-console.log(gameApi);
 export {gameApi};

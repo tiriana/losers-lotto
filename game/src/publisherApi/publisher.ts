@@ -2,7 +2,6 @@
 
 import STORAGE = DUST.PLUGINS.PUBLISHERAPI.STORAGE;
 import STORE = DUST.PLUGINS.PUBLISHERAPI.STORE;
-import NETWORK = DUST.PLUGINS.PUBLISHERAPI.NETWORK;
 import SOCIAL = DUST.PLUGINS.PUBLISHERAPI.SOCIAL;
 
 import Social = SOCIAL.Social;
@@ -12,7 +11,6 @@ import GameStorage = STORAGE.GameStorage;
 import UserLifeStorage = STORAGE.UserLifeStorage;
 import UserStoreItemsStorage = STORAGE.UserStoreItemsStorage;
 import Store = STORE.Store;
-import Network = NETWORK.Network;
 
 import scenes = DUST.scenes;
 import sceneEvents = DUST.sceneEvents;
@@ -48,10 +46,6 @@ class Publisher {
 
     get store(): Store {
         return STORE.getStore();
-    }
-
-    get network(): Network {
-        return NETWORK.getNetwork();
     }
 
     checkAndTakeChips(chipsRequired: number): Promise<boolean> {

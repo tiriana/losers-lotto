@@ -1,9 +1,7 @@
 enum Events {
     //setup events for different kind of games        
     gameSetupSingle,
-    gameSetupDuel,
-    gameSetupMultiplayer,
-
+    
     // game start flow
     gameRequestedStart,
     gameStarted,
