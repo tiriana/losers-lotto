@@ -25,15 +25,14 @@ class RemoteResource {
         return <Promise<T>>axios.get(this.requestUrl + url, {
             headers: this._getHeaders(),
             params: params
-        }).then((response: axios.Response) => {
+        }).then((response: axios.Response) => { 
             return Promise.resolve(response.data);
         });
     }
 
     post<T>(url: string, data?: {}): Promise<T> {
-        return <Promise<T>>axios.post(this.requestUrl + url, {
-            headers: this._getHeaders(),
-            data: data
+        return <Promise<T>>axios.post(this.requestUrl + url, data, {
+            headers: this._getHeaders()
         }).then((response: axios.Response) => {
             return Promise.resolve(response.data);
         });

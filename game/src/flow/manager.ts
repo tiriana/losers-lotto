@@ -10,13 +10,26 @@ import {Events} from './Events';
 import {state} from './state';
 import {GameTypes} from './GameTypes';
 import {PlayerLocal} from './PlayerLocal';
+import {gameApi} from '../gameApi';
 
 dustEvent.on(Events[Events.gameSetupSingle], () => {
     state.gameType = GameTypes.single;
 });
 
 dustEvent.on(Events[Events.gameRequestedStart], function() {
-    dustEvent.broadcast(Events[Events.gameStarted], null);
+    //TODO: handle session user
+    gameApi
+        .sessionGuest()
+        .then(() => {
+            return gameApi.config();
+        })
+        .then(() => {
+            dustEvent.broadcast(Events[Events.gameStarted], null);
+        })
+        .catch((error) => {
+            //TODO: handle session error
+        });
+
 });
 
 dustEvent.on(Events[Events.gameStarted], function() {
@@ -24,10 +37,19 @@ dustEvent.on(Events[Events.gameStarted], function() {
 });
 
 dustEvent.on(Events[Events.matchRequestedStart], function() {
-    state.match = new Match();
+    //TODO: handle ongoing
+    gameApi
+        .start()
+        .then((gameState) => {
+            //TODO: handle state
+            state.match = new Match();
 
-    state.match.addPlayer(new PlayerLocal({ id: 'me', name: 'Me' }));
-    scenes.switch(List[List.match]);
+            state.match.addPlayer(new PlayerLocal({ id: 'me', name: 'Me' }));
+            scenes.switch(List[List.match]);
+        })
+        .catch((error) => {
+            //TODO: handle start error
+        });
 });
 
 dustEvent.on(Events[Events.matchSceneStarted], function() {
@@ -35,7 +57,14 @@ dustEvent.on(Events[Events.matchSceneStarted], function() {
 });
 
 dustEvent.on(Events[Events.matchRequestedEnd], function() {
-    state.match.stop();
+    gameApi
+        .forfeit()
+        .then(() => {
+            state.match.stop();
+        })
+        .catch((error) => {
+            //TODO: handle forfeit error
+        });
 });
 
 dustEvent.on(Events[Events.matchEnded], function() {

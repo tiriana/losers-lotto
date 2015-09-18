@@ -89,7 +89,7 @@ class GameApiRemote extends RemoteResource implements GameApiInterface {
 
     sessionGuest(): Promise<GameApiSessionResponseInterface> {
         return this
-            .get<GameApiSessionResponseInterface>(this.urls.sessionGuest)
+            .post<GameApiSessionResponseInterface>(this.urls.sessionGuest)
             .then((session) => {
                 this.sessionId = session.sessionToken;
 
@@ -104,7 +104,7 @@ class GameApiRemote extends RemoteResource implements GameApiInterface {
         };
 
         return this
-            .get<GameApiSessionResponseInterface>(this.urls.sessionGuest)
+            .post<GameApiSessionResponseInterface>(this.urls.sessionGuest)
             .then((session) => {
                 this.sessionId = session.sessionToken;
 
