@@ -21,11 +21,13 @@ module.exports = function (grunt) {
             'node_modules/@thelittlehog/tlh-dust.plugins.soundscreen*/build/*.min.js',
             'node_modules/@thelittlehog/tlh-dust.plugins.fullscreenbutton*/build/*.min.js',
             'node_modules/@thelittlehog/tlh-dust.plugins.debugtrigger*/build/*.min.js',
+            'node_modules/@thelittlehog/tlh-dust.plugins.networkapi*/build/*.min.js',
             'node_modules/@thelittlehog/tlh-dust.plugins.publisherapi/build/*.min.js',
-            'node_modules/@thelittlehog/tlh-dust.plugins.dummypublisher/build/*.min.js',
+            'node_modules/@thelittlehog/tlh-dust.plugins.dummypublisher/build/*noNetwork.min.js',
             'node_modules/@thelittlehog/tlh-dust.plugins.nugplay/build/*.min.js',
             'node_modules/@thelittlehog/tlh-dust.plugins.boostermedia/build/*.min.js',
-            'node_modules/@thelittlehog/tlh-dust.plugins.storage.local-storage/build/*.min.js'
+            'node_modules/@thelittlehog/tlh-dust.plugins.storage.local-storage/build/*.min.js',
+            'node_modules/axios/dist/axios.standalone.min.js'
         ],
         filesGame = filesVendor.concat(['tmp/game.js']);
 
@@ -68,6 +70,14 @@ module.exports = function (grunt) {
             }
         },
         ts: {
+            references: {
+                src: ['node_modules/@thelittlehog/**/*.d.ts', 'node_modules/axios/axios.d.ts'],
+                reference: "references.ts",
+                options: {
+                    experimentalDecorators: true,
+                    sourceMap: false
+                }
+            },
             app: {
                 src: ['node_modules/@thelittlehog/**/*.d.ts', 'game/**/*.ts'],
                 outDir: 'tmp/compiled',
@@ -182,9 +192,9 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-file-creator');
     grunt.loadNpmTasks('grunt-browserify');
 
-    grunt.task.registerTask('dev', ['file-creator', 'clean:pre', 'copy:loader', 'copy:rotate', 'ts:app', 'browserify', 'concat', 'clean:post']);
-    grunt.task.registerTask('dist', ['file-creator', 'clean:pre', 'copy:loader', 'copy:rotate', 'ts:app', 'browserify', 'concat', 'uglify', 'clean:post']);
-    grunt.task.registerTask('noassets', ['file-creator', 'clean:pre', 'ts:app', 'ts:test', 'browserify', 'concat', 'clean:post']);
+    grunt.task.registerTask('dev', ['file-creator', 'clean:pre', 'copy:loader', 'copy:rotate', 'ts:references', 'ts:app', 'browserify', 'concat', 'clean:post']);
+    grunt.task.registerTask('dist', ['file-creator', 'clean:pre', 'copy:loader', 'copy:rotate', 'ts:references', 'ts:app', 'browserify', 'concat', 'uglify', 'clean:post']);
+    grunt.task.registerTask('noassets', ['file-creator', 'clean:pre', 'ts:references', 'ts:app', 'ts:test', 'browserify', 'concat', 'clean:post']);
 
     grunt.task.registerTask('rebuild-dev', ['clean:publishers', 'exec:npm', 'exec:tp', 'exec:fonts', 'exec:as', 'json-minify', 'dev']);
     grunt.task.registerTask('rebuild-dist', ['clean:publishers', 'exec:npm', 'exec:tp', 'exec:fonts', 'exec:as', 'json-minify', 'dist']);

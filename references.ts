@@ -103,4 +103,5 @@
 /// <reference path="node_modules/@thelittlehog/tlh-dust/vendor/pixi.d.ts" />
 /// <reference path="node_modules/@thelittlehog/tlh-dust/vendor/proton.d.ts" />
 /// <reference path="node_modules/@thelittlehog/tlh-dust/vendor/visibility.d.ts" />
+/// <reference path="node_modules/axios/axios.d.ts" />
 //grunt-end

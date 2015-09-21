@@ -2,7 +2,6 @@
 
 import STORAGE = DUST.PLUGINS.PUBLISHERAPI.STORAGE;
 import STORE = DUST.PLUGINS.PUBLISHERAPI.STORE;
-import NETWORK = DUST.PLUGINS.PUBLISHERAPI.NETWORK;
 import SOCIAL = DUST.PLUGINS.PUBLISHERAPI.SOCIAL;
 
 import UserMetaDataStorage = STORAGE.UserMetaDataStorage;
@@ -12,9 +11,6 @@ import UserLifeStorage = STORAGE.UserLifeStorage;
 import UserStoreItemsStorage = STORAGE.UserStoreItemsStorage;
 
 import Store = STORE.Store;
-
-import Network = NETWORK.Network
-
 import Social = SOCIAL.Social;
 
 import dustEvent = DUST.event;
@@ -51,11 +47,6 @@ dustEvent.once(PublisherEvents[PublisherEvents.PUBLISHER_STARTED], () => {
         STORAGE.registerUserEnergyStorage(storage);
     });
 
-    // network
-    dustEvent.once(PublisherEvents[PublisherEvents.PUBLISHER_HAS_OWN_NETWORK], (network: Network) => {
-        NETWORK.registerNetwork(network);
-    });
-
     // store
     dustEvent.once(PublisherEvents[PublisherEvents.PUBLISHER_HAS_OWN_STORE], (store: Store) => {
         STORE.registerStore(store);
@@ -75,15 +66,6 @@ dustEvent.once(PublisherEvents[PublisherEvents.PUBLISHER_STARTED], () => {
         rewardLimit: 90,
     };
 
-    var networkConfig = {
-        registryUrl: "",
-        registryToken: ""
-    };
-
     dustEvent.broadcast(PublisherEvents[PublisherEvents.USER_LIFE_STORAGE_REGISTRY_READY], lifeStorageConfig);
     dustEvent.broadcast(PublisherEvents[PublisherEvents.STORE_REGISTRY_READY], storeConfig);
-
-    // window.setTimeout(() => {
-    //     dustEvent.broadcast(PublisherEvents[PublisherEvents.NETWORK_REGISTRY_READY], networkConfig);
-    // }, 2000);
 });

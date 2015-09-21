@@ -1,7 +1,5 @@
 enum GameTypes {
-    single,
-    duel,
-    multi
+    single
 }
 
 export {GameTypes};
