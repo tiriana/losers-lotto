@@ -3,16 +3,16 @@
 import {RemoteResource} from './RemoteResource';
 
 import {
-GameApiPayTableItemInterface,
-GameApiPickResultInterface,
-GameApiSessionRequestInterface,
-GameApiSessionResponseInterface,
-GameApiNewGameRequestInterface,
-GameApiNewGameResponseInterface,
-GameApiGameModelInterface,
-GameApiGameConfigInterface,
-GameApiPickRequestInterface,
-GameApiInterface
+    GameApiPayTableItemInterface,
+    GameApiPickResultInterface,
+    GameApiSessionRequestInterface,
+    GameApiSessionResponseInterface,
+    GameApiNewGameRequestInterface,
+    GameApiNewGameResponseInterface,
+    GameApiGameModelInterface,
+    GameApiGameConfigInterface,
+    GameApiPickRequestInterface,
+    GameApiInterface
 } from './GameApiInterfaces';
 
 class GameApiRemote extends RemoteResource implements GameApiInterface {
