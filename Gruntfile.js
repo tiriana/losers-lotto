@@ -14,6 +14,7 @@ module.exports = function (grunt) {
             { expand: true, src: 'game/assets/**/*' }
         ],
         filesVendor = [
+            'node_modules/@thelittlehog/tlh-dust.plugins.uuid.*/build/*.min.js',
             'node_modules/@thelittlehog/tlh-dust/build/dustLight.min.js',
             'node_modules/@thelittlehog/tlh-dust.components/build/*.min.js',
             'node_modules/@thelittlehog/tlh-dust.plugins.loaders*/build/*.min.js',

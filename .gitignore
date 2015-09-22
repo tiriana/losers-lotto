@@ -1,3 +1,7 @@
+/build
+/assetSource
+/node_modules
+/test
 .DS_Store
 .idea
 build/iOS
