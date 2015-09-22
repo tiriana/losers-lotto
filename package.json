@@ -27,7 +27,7 @@
     "postversion": "git push && git push --tags"
   },
   "devDependencies": {
-    "@thelittlehog/tlh-dust": "~0.26",
+    "@thelittlehog/tlh-dust": "~0.27",
     "@thelittlehog/tlh-dust.animations": "~0.1",
     "@thelittlehog/tlh-dust.components": "~0.8",
     "@thelittlehog/tlh-dust.plugins.debugtrigger": "~1.1",
