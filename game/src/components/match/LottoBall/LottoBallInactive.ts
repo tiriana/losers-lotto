@@ -15,7 +15,7 @@ class LottoBallInactive<T extends LottoBallInterface<Entity>> extends LottoBallS
 
         this.onInteractionFull(() => {
             gameApi
-                .pick([this.ball.number])
+                .pick([this.ball.ballNumber])
                 .then((result) => {
                     console.log(result);
                 });

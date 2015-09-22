@@ -20,7 +20,6 @@ import {LottoBallActiveUnlucky} from './LottoBallActiveUnlucky';
 
 class LottoBall extends Entity implements LottoBallInterface<LottoBall> {
     id: string;
-    number: number;
     state: LottoBallStates;
     ballNumber: number;
     ballStates: LottoBallStatesInterface<LottoBallInactive<LottoBall>, LottoBallActivating<LottoBall>, LottoBallActiveLucky<LottoBall>, LottoBallActiveUnlucky<LottoBall>>;

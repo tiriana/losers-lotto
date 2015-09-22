@@ -21,7 +21,7 @@ interface LottoBallSateItemInterface<T> {
 
 interface LottoBallInterface<T> {
     setState: (state: LottoBallStates) => Promise<T>,
-    number: number,
+    ballNumber: number,
     state: LottoBallStates,
     id: string
 }
