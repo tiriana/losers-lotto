@@ -13,6 +13,7 @@ import {match} from './scenes/match';
 import {lobby} from './scenes/lobby';
 import {standings} from './scenes/standings';
 import {welcome} from './scenes/welcome';
+import {demo} from './swipingPlayground';
 
 import {background} from './components/common/background';
 
@@ -28,7 +29,9 @@ function game() {
     lobby();
     standings();
     welcome();
-    soundScreen().show();
+    //soundScreen().show();
+
+    demo();
 }
 
 export {game}
