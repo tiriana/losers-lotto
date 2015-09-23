@@ -5,7 +5,7 @@ import dustEvent = DUST.event;
 
 import {List} from './List';
 
-import {exampleLottoBall} from '../components/match/exampleLottoBall';
+import {exampleLottoBalls} from '../components/match/exampleLottoBalls';
 
 class Match extends Scene {
     constructor(options) {
@@ -24,7 +24,7 @@ function onHide(clean) {
 }
 
 options.objects = [
-    exampleLottoBall
+    exampleLottoBalls 
 ];
 
 options.onShow = onShow;

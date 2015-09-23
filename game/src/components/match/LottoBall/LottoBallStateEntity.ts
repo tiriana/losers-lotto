@@ -4,7 +4,7 @@ import Entity = DUST.GRAPHIC.Entity;
 import EntityOptions = DUST.GRAPHIC.EntityOptions;
 
 import {
-    LottoBallSateItemInterface
+LottoBallSateItemInterface
 } from './LottoBallInterfaces';
 
 class LottoBallStateEntity<T extends Entity> extends Entity implements LottoBallSateItemInterface<T> {
@@ -28,12 +28,28 @@ class LottoBallStateEntity<T extends Entity> extends Entity implements LottoBall
             })
     }
 
+    inputHandler() {
+        return Promise
+            .resolve({
+                stateItem: this,
+                result: null
+            });
+    }
+
     enableHandler() {
-        return this;
+        return Promise
+            .resolve({
+                stateItem: this,
+                result: null
+            });
     }
 
     disableHandler() {
-        return this;
+        return Promise
+            .resolve({
+                stateItem: this,
+                result: null
+            });
     }
 
     enable() {
@@ -41,6 +57,9 @@ class LottoBallStateEntity<T extends Entity> extends Entity implements LottoBall
             .selfAttach()
             .then(() => {
                 return this.enableHandler();
+            })
+            .then(() => {
+                return this;
             });
     }
 

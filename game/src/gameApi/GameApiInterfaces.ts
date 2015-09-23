@@ -6,10 +6,8 @@ interface GameApiPayTableItemInterface {
 }
 
 interface GameApiPickResultInterface {
-    result: {
-        number: number,
-        lucky: boolean
-    }
+    number: number,
+    lucky: boolean
 }
 
 interface GameApiSessionRequestInterface {
@@ -46,7 +44,8 @@ interface GameApiGameModelInterface {
     };
     cardNumbers: number[];
     scratchedNumbers: number[];
-    results?: GameApiPickResultInterface[];
+    state:any;
+    // state?: GameApiPickResultInterface[];
 }
 
 interface GameApiGameConfigInterface {
@@ -87,14 +86,14 @@ interface GameApiInterface {
 }
 
 export {
-    GameApiPayTableItemInterface,
-    GameApiPickResultInterface,
-    GameApiSessionRequestInterface,
-    GameApiSessionResponseInterface,
-    GameApiNewGameRequestInterface,
-    GameApiNewGameResponseInterface,
-    GameApiGameModelInterface,
-    GameApiGameConfigInterface,
-    GameApiPickRequestInterface,
-    GameApiInterface
+GameApiPayTableItemInterface,
+GameApiPickResultInterface,
+GameApiSessionRequestInterface,
+GameApiSessionResponseInterface,
+GameApiNewGameRequestInterface,
+GameApiNewGameResponseInterface,
+GameApiGameModelInterface,
+GameApiGameConfigInterface,
+GameApiPickRequestInterface,
+GameApiInterface
 };
