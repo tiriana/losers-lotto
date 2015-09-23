@@ -6,9 +6,7 @@ import EntityOptions = DUST.GRAPHIC.EntityOptions;
 import {middle} from '../../../layers/middle';
 import {viewPort} from '../../../viewPort';
 
-import {
-LottoBallStates
-} from './LottoBallInterfaces';
+import {LottoBallStates} from './LottoBallInterfaces';
 
 class LottoBallOptions extends EntityOptions {
     constructor(id: string) {
