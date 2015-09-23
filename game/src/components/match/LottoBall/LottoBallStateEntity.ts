@@ -3,9 +3,9 @@
 import Entity = DUST.GRAPHIC.Entity;
 import EntityOptions = DUST.GRAPHIC.EntityOptions;
 
-import {LottoBallSateItemInterface} from './LottoBallInterfaces';
+import {LottoBallStateItemInterface} from './LottoBallInterfaces';
 
-class LottoBallStateEntity<T extends Entity> extends Entity implements LottoBallSateItemInterface<T> {
+class LottoBallStateEntity<T extends Entity> extends Entity implements LottoBallStateItemInterface<T> {
     constructor(options: EntityOptions) {
         super(options);
     }

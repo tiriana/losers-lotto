@@ -14,12 +14,12 @@ enum LottoBallStates {
     activeUnlucky
 }
 
-interface LottoBallSateItemInterface<T> {
-    enable: () => Promise<LottoBallSateItemInterface<T>>,
-    disable: () => Promise<LottoBallSateItemInterface<T>>,
-    enableHandler: () => Promise<LottoBallSateItemInterface<T>>
-    disableHandler: () => Promise<LottoBallSateItemInterface<T>>
-    inputHandler: () => Promise<LottoBallSateItemInterface<T>>
+interface LottoBallStateItemInterface<T> {
+    enable: () => Promise<LottoBallStateItemInterface<T>>,
+    disable: () => Promise<LottoBallStateItemInterface<T>>,
+    enableHandler: () => Promise<LottoBallStateItemInterface<T>>
+    disableHandler: () => Promise<LottoBallStateItemInterface<T>>
+    inputHandler: () => Promise<LottoBallStateItemInterface<T>>
 }
 
 interface LottoBallInterface<T> {
@@ -31,15 +31,15 @@ interface LottoBallInterface<T> {
 }
 
 interface LottoBallStatesInterface<TInactive, TActivating, TActiveLucky, TActiveUnlucky> {
-    inactive: LottoBallSateItemInterface<TInactive>,
-    activating: LottoBallSateItemInterface<TActivating>,
-    activeLucky: LottoBallSateItemInterface<TActiveLucky>,
-    activeUnlucky: LottoBallSateItemInterface<TActiveUnlucky>
+    inactive: LottoBallStateItemInterface<TInactive>,
+    activating: LottoBallStateItemInterface<TActivating>,
+    activeLucky: LottoBallStateItemInterface<TActiveLucky>,
+    activeUnlucky: LottoBallStateItemInterface<TActiveUnlucky>
 }
 
 export {
     LottoBallStates,
-    LottoBallSateItemInterface,
+    LottoBallStateItemInterface,
     LottoBallInterface,
     LottoBallStatesInterface
 }
