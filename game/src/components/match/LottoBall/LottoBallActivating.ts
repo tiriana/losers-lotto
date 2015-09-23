@@ -25,7 +25,7 @@ class LottoBallActivating<T extends LottoBallInterface<Entity>> extends LottoBal
         return gameApi
             .pick([this.ball.ballNumber])
             .then((result) => {
-                if (result.state[this.ball.ballNumber].lucky) {
+                if (result.results[0].lucky) {
                     return this.ball.setState(LottoBallStates.activeLucky);
                 }
 

@@ -44,8 +44,7 @@ interface GameApiGameModelInterface {
     };
     cardNumbers: number[];
     scratchedNumbers: number[];
-    state:any;
-    // state?: GameApiPickResultInterface[];
+    results?: GameApiPickResultInterface[];
 }
 
 interface GameApiGameConfigInterface {
