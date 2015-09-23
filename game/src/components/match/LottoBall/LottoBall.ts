@@ -7,9 +7,9 @@ import uuid = DUST.PLUGINS.UUID.RFC4122.uuid;
 import {middle} from '../../../layers/middle';
 
 import {
-    LottoBallStates,
-    LottoBallInterface,
-    LottoBallStatesInterface
+LottoBallStates,
+LottoBallInterface,
+LottoBallStatesInterface
 } from './LottoBallInterfaces';
 
 import {LottoBallOptions} from './LottoBallOptions';
@@ -61,13 +61,10 @@ class LottoBall extends Entity implements LottoBallInterface<LottoBall> {
             .inputHandler();
     }
 
-    private clearState() {
-        return Promise.all([
-            this.ballStates.inactive.disable(),
-            this.ballStates.activating.disable(),
-            this.ballStates.activeLucky.disable(),
-            this.ballStates.activeUnlucky.disable()
-        ]);
+    private clearState() {        
+        return this
+            .ballStates[LottoBallStates[this.state]]
+            .disable();
     }
 
     private buildStates() {
