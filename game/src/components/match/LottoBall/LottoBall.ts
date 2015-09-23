@@ -7,9 +7,9 @@ import uuid = DUST.PLUGINS.UUID.RFC4122.uuid;
 import {middle} from '../../../layers/middle';
 
 import {
-LottoBallStates,
-LottoBallInterface,
-LottoBallStatesInterface
+    LottoBallStates,
+    LottoBallInterface,
+    LottoBallStatesInterface
 } from './LottoBallInterfaces';
 
 import {LottoBallOptions} from './LottoBallOptions';

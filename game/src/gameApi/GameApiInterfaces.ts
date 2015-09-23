@@ -85,14 +85,14 @@ interface GameApiInterface {
 }
 
 export {
-GameApiPayTableItemInterface,
-GameApiPickResultInterface,
-GameApiSessionRequestInterface,
-GameApiSessionResponseInterface,
-GameApiNewGameRequestInterface,
-GameApiNewGameResponseInterface,
-GameApiGameModelInterface,
-GameApiGameConfigInterface,
-GameApiPickRequestInterface,
-GameApiInterface
+    GameApiPayTableItemInterface,
+    GameApiPickResultInterface,
+    GameApiSessionRequestInterface,
+    GameApiSessionResponseInterface,
+    GameApiNewGameRequestInterface,
+    GameApiNewGameResponseInterface,
+    GameApiGameModelInterface,
+    GameApiGameConfigInterface,
+    GameApiPickRequestInterface,
+    GameApiInterface
 };

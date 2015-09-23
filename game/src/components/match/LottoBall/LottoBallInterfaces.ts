@@ -43,8 +43,8 @@ interface LottoBallStatesInterface<TInactive, TActivating, TActiveLucky, TActive
 }
 
 export {
-LottoBallStates,
-LottoBallSateItemInterface,
-LottoBallInterface,
-LottoBallStatesInterface
+    LottoBallStates,
+    LottoBallSateItemInterface,
+    LottoBallInterface,
+    LottoBallStatesInterface
 }

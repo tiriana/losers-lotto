@@ -1,15 +1,15 @@
 import Entity = DUST.GRAPHIC.Entity;
 
+import {gameApi} from '../../../gameApi';
+import {GameApiGameModelInterface} from '../../../gameApi/GameApiInterfaces';
+
 import {
-LottoBallInterface,
-LottoBallStates
+    LottoBallInterface,
+    LottoBallStates
 } from './LottoBallInterfaces';
 
 import {LottoBallActivatingOptions} from './LottoBallOptions';
 import {LottoBallStateEntity} from './LottoBallStateEntity';
-
-import {gameApi} from '../../../gameApi';
-import {GameApiGameModelInterface} from '../../../gameApi/GameApiInterfaces';
 
 class LottoBallActivating<T extends LottoBallInterface<Entity>> extends LottoBallStateEntity<LottoBallActivating<T>>{
     ball: LottoBallInterface<T>;

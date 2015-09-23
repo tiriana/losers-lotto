@@ -1,8 +1,8 @@
 import Entity = DUST.GRAPHIC.Entity;
 
 import {
-LottoBallInterface,
-LottoBallStates
+    LottoBallInterface,
+    LottoBallStates
 } from './LottoBallInterfaces';
 
 import {LottoBallInactiveOptions} from './LottoBallOptions';
