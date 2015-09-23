@@ -49,9 +49,6 @@ class LottoBall extends Entity implements LottoBallInterface<LottoBall> {
             .clearState()
             .then(() => {
                 return this.ballStates[LottoBallStates[state]].enable();
-            })
-            .then(() => {
-                return this;
             });
     }
 
@@ -61,7 +58,7 @@ class LottoBall extends Entity implements LottoBallInterface<LottoBall> {
             .inputHandler();
     }
 
-    private clearState() {        
+    private clearState() {
         return this
             .ballStates[LottoBallStates[this.state]]
             .disable();

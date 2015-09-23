@@ -1,8 +1,8 @@
 import Entity = DUST.GRAPHIC.Entity;
 
 import {
-    LottoBallInterface,
-    LottoBallStates
+LottoBallInterface,
+LottoBallStates
 } from './LottoBallInterfaces';
 
 import {LottoBallInactiveOptions} from './LottoBallOptions';
@@ -18,19 +18,11 @@ class LottoBallInactive<T extends LottoBallInterface<Entity>> extends LottoBallS
     }
 
     inputHandler() {
-        return Promise
-            .resolve({
-                stateItem: this,
-                result: null
-            })
+        return this
+            .ball
+            .setState(LottoBallStates.activating)
             .then(() => {
-                return this.ball.setState(LottoBallStates.activating);
-            })
-            .then(() => {
-                return {
-                    stateItem: this,
-                    result: null
-                }
+                return this;
             });
     }
 }

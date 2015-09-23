@@ -10,44 +10,20 @@ class LottoBallStateEntity<T extends Entity> extends Entity implements LottoBall
         super(options);
     }
 
-    selfRemove(remove?: () => void) {
-        return super
-            .selfRemove(remove)
-            .then(() => {
-                return this;
-            });
-    }
-
-    selfAttach(notify?: () => void) {
-        return super
-            .selfAttach(notify)
-            .then(() => {
-                return this;
-            })
+    private mockupHandler() {
+        return Promise.resolve(this);
     }
 
     inputHandler() {
-        return Promise
-            .resolve({
-                stateItem: this,
-                result: null
-            });
+        return this.mockupHandler();
     }
 
     enableHandler() {
-        return Promise
-            .resolve({
-                stateItem: this,
-                result: null
-            });
+        return this.mockupHandler();
     }
 
     disableHandler() {
-        return Promise
-            .resolve({
-                stateItem: this,
-                result: null
-            });
+        return this.mockupHandler();
     }
 
     enable() {
@@ -55,20 +31,14 @@ class LottoBallStateEntity<T extends Entity> extends Entity implements LottoBall
             .selfAttach()
             .then(() => {
                 return this.enableHandler();
-            })
-            .then(() => {
-                return this;
             });
     }
 
     disable() {
-        return Promise
-            .resolve()
+        return this
+            .disableHandler()
             .then(() => {
-                return this.disableHandler();
-            })
-            .then(() => {
-                return this.selfRemove();
+                return <Promise<LottoBallStateEntity<T>>>this.selfRemove();
             });
     }
 }

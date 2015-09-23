@@ -4,8 +4,8 @@ import {gameApi} from '../../../gameApi';
 import {GameApiGameModelInterface} from '../../../gameApi/GameApiInterfaces';
 
 import {
-    LottoBallInterface,
-    LottoBallStates
+LottoBallInterface,
+LottoBallStates
 } from './LottoBallInterfaces';
 
 import {LottoBallActivatingOptions} from './LottoBallOptions';
@@ -32,10 +32,7 @@ class LottoBallActivating<T extends LottoBallInterface<Entity>> extends LottoBal
                 return this.ball.setState(LottoBallStates.activeUnlucky);
             })
             .then(() => {
-                return {
-                    stateItem: this,
-                    result: null
-                };
+                return this;
             });
     }
 }

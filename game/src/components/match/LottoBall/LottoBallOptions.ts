@@ -7,7 +7,7 @@ import {middle} from '../../../layers/middle';
 import {viewPort} from '../../../viewPort';
 
 import {
-    LottoBallStates
+LottoBallStates
 } from './LottoBallInterfaces';
 
 class LottoBallOptions extends EntityOptions {

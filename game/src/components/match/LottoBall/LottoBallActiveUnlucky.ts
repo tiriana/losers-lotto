@@ -9,7 +9,7 @@ class LottoBallActiveUnlucky<T extends LottoBallInterface<Entity>> extends Lotto
 
     constructor(ball: LottoBallInterface<T>, prefix: string) {
         super(new LottoBallActiveUnluckyOptions<LottoBallInterface<T>>(ball, prefix));
-        
+
         this.ball = ball;
     }
 }
