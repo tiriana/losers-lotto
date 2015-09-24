@@ -6,7 +6,9 @@ import {versionText} from '../components/common/versionText';
 import {fullScreen} from '../plugins/fullScreen';
 import {debugTrigger} from '../plugins/debugTrigger';
 import {List} from './List';
-  
+
+import {startGameButton} from '../components/welcome/buttons/startGameButton';
+
 class Welcome extends Scene {
     constructor(options) {
         super(options);
@@ -21,12 +23,14 @@ function onShow() {
 
 function onHide(clean) {
     clean();
-} 
+}
 
 options.objects = [
     debugTrigger,
     fullScreen,
-    versionText
+    versionText,
+
+    startGameButton
 ];
 
 options.onShow = onShow;

@@ -3,27 +3,30 @@
 import Scene = DUST.Scene;
 import dustEvent = DUST.event;
 
-import {Events} from '../flow/Events';
 import {List} from './List';
+
+import {exampleLottoBalls} from '../components/match/exampleLottoBalls';
 
 class Match extends Scene {
     constructor(options) {
         super(options);
-    } 
+    }
 }
 
 var matchInstance,
     options: any = {};
 
 function onShow() {
-    dustEvent.broadcast(Events[Events.matchSceneStarted], null);
 }
 
 function onHide(clean) {
     clean();
 }
 
-options.objects = [];
+options.objects = [
+    exampleLottoBalls 
+];
+
 options.onShow = onShow;
 options.onHide = onHide;
 options.name = List[List.match];
