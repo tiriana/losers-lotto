@@ -25,9 +25,6 @@ module.exports = function (grunt) {
             'node_modules/@thelittlehog/tlh-dust.plugins.networkapi*/build/*.min.js',
             'node_modules/@thelittlehog/tlh-dust.plugins.publisherapi/build/*.min.js',
             'node_modules/@thelittlehog/tlh-dust.plugins.dummypublisher/build/*noNetwork.min.js',
-            'node_modules/@thelittlehog/tlh-dust.plugins.nugplay/build/*.min.js',
-            'node_modules/@thelittlehog/tlh-dust.plugins.boostermedia/build/*.min.js',
-            'node_modules/@thelittlehog/tlh-dust.plugins.storage.local-storage/build/*.min.js',
             'node_modules/axios/dist/axios.standalone.min.js'
         ],
         filesGame = filesVendor.concat(['tmp/game.js']);
@@ -101,7 +98,7 @@ module.exports = function (grunt) {
             }
         },
         clean: {
-            pre: ['build'],
+            pre: ['build', 'tmp'],
             publishers: [
                 'node_modules/@thelittlehog/tlh-dust.plugins.dummypublisher',
                 'node_modules/@thelittlehog/tlh-dust.plugins.nugplay',

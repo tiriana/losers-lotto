@@ -6,10 +6,8 @@ interface GameApiPayTableItemInterface {
 }
 
 interface GameApiPickResultInterface {
-    result: {
-        number: number,
-        lucky: boolean
-    }
+    number: number,
+    lucky: boolean
 }
 
 interface GameApiSessionRequestInterface {

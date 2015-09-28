@@ -52,10 +52,6 @@ dustEvent.on(Events[Events.matchRequestedStart], function() {
         });
 });
 
-dustEvent.on(Events[Events.matchSceneStarted], function() {
-    state.match.start();
-});
-
 dustEvent.on(Events[Events.matchRequestedEnd], function() {
     gameApi
         .forfeit()
