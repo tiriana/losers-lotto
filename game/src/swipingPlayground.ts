@@ -12,6 +12,7 @@ var rgb2hex = (<any>PIXI).utils.rgb2hex;
 var hex2rgb = (<any>PIXI).utils.hex2rgb;
 import {top} from './layers/top';
 import {Fonts} from './Fonts';
+import rotation = DUST.PLUGINS.ROTATION.classic;
 
 class InteractionHandler {
     protected _boundSprite: Sprite;
@@ -274,7 +275,20 @@ class Demo {
 
                 var color = this.colors[touchData.data.identifier % this.colors.length];
 
-                var line = Demo.getLineGraphic(prevPos.x, prevPos.y, pos.x, pos.y, 6, color);
+                var line;
+
+                if (rotation().isRotated()) {
+                    var px = prevPos.x;
+                    var py = prevPos.y;
+
+                    var x = pos.x;
+                    var y = pos.y;
+
+                    line = Demo.getLineGraphic(-py, -px, -y, -x, 6, color);
+                } else {
+                    line = Demo.getLineGraphic(prevPos.x, prevPos.y, pos.x, pos.y, 6, color);
+                }
+
 
                 //console.log(ids, sprite.name, [pos.x, pos.y]);
 
@@ -323,7 +337,7 @@ class Demo {
     }
 
     buildShapes() {
-        var w: number = 75, colNum: number;
+        var w: number = 100, colNum: number;
         var offset: number;
         var num: number = 1;
         this.shapesCont = new Container();
