@@ -38,6 +38,10 @@ interface GameApiNewGameResponseInterface {
     scratchedNumbers: number[];
 }
 
+interface GameApiOngoingGameRequestInterface {
+    gameId: string;
+}
+
 interface GameApiGameModelInterface {
     bet: {
         CASH: number
@@ -56,6 +60,14 @@ interface GameApiPickRequestInterface {
     gameInstanceId: string;
     scratchedNumbers: number[];
 }
+
+interface GameApiPaymentsResponseInterface {
+    CASH: number;
+}
+
+interface GameApiValidationErrorInterface {
+    ValidationError?: string;
+} 
 
 interface GameApiInterface {
     sessionId: string;
@@ -79,6 +91,7 @@ interface GameApiInterface {
     start(): Promise<GameApiNewGameResponseInterface>
     ongoing(): Promise<GameApiGameModelInterface>
     pick(value: number[]): Promise<GameApiGameModelInterface>;
+    balance(): Promise<GameApiPaymentsResponseInterface>;
     forfeit(): Promise<any>;
     sessionGuest(): Promise<GameApiSessionResponseInterface>;
     sessionUser(): Promise<GameApiSessionResponseInterface>;
@@ -91,8 +104,11 @@ export {
     GameApiSessionResponseInterface,
     GameApiNewGameRequestInterface,
     GameApiNewGameResponseInterface,
+    GameApiOngoingGameRequestInterface,
     GameApiGameModelInterface,
     GameApiGameConfigInterface,
     GameApiPickRequestInterface,
+    GameApiPaymentsResponseInterface,
+    GameApiValidationErrorInterface,
     GameApiInterface
 };

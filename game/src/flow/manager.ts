@@ -11,6 +11,7 @@ import {state} from './state';
 import {GameTypes} from './GameTypes';
 import {PlayerLocal} from './PlayerLocal';
 import {gameApi} from '../gameApi';
+import {GameApiValidationErrorInterface} from '../gameApi/GameApiInterfaces';
 
 dustEvent.on(Events[Events.gameSetupSingle], () => {
     state.gameType = GameTypes.single;
@@ -26,7 +27,7 @@ dustEvent.on(Events[Events.gameRequestedStart], function() {
         .then(() => {
             dustEvent.broadcast(Events[Events.gameStarted], null);
         })
-        .catch((error) => {
+        .catch((error: GameApiValidationErrorInterface) => {
             //TODO: handle session error
         });
 
@@ -47,7 +48,7 @@ dustEvent.on(Events[Events.matchRequestedStart], function() {
             state.match.addPlayer(new PlayerLocal({ id: 'me', name: 'Me' }));
             scenes.switch(List[List.match]);
         })
-        .catch((error) => {
+        .catch((error: GameApiValidationErrorInterface) => {
             //TODO: handle start error
         });
 });
@@ -58,7 +59,7 @@ dustEvent.on(Events[Events.matchRequestedEnd], function() {
         .then(() => {
             state.match.stop();
         })
-        .catch((error) => {
+        .catch((error: GameApiValidationErrorInterface) => {
             //TODO: handle forfeit error
         });
 });

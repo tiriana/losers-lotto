@@ -3,16 +3,18 @@
 import {RemoteResource} from './RemoteResource';
 
 import {
-    GameApiPayTableItemInterface,
-    GameApiPickResultInterface,
-    GameApiSessionRequestInterface,
-    GameApiSessionResponseInterface,
-    GameApiNewGameRequestInterface,
-    GameApiNewGameResponseInterface,
-    GameApiGameModelInterface,
-    GameApiGameConfigInterface,
-    GameApiPickRequestInterface,
-    GameApiInterface
+GameApiPayTableItemInterface,
+GameApiPickResultInterface,
+GameApiSessionRequestInterface,
+GameApiSessionResponseInterface,
+GameApiNewGameRequestInterface,
+GameApiNewGameResponseInterface,
+GameApiOngoingGameRequestInterface,
+GameApiGameModelInterface,
+GameApiGameConfigInterface,
+GameApiPickRequestInterface,
+GameApiPaymentsResponseInterface,
+GameApiInterface
 } from './GameApiInterfaces';
 
 class GameApiRemote extends RemoteResource implements GameApiInterface {
@@ -24,6 +26,7 @@ class GameApiRemote extends RemoteResource implements GameApiInterface {
     gamePayTable: GameApiPayTableItemInterface[];
     urls = {
         config: '/losers-lotto/config',
+        balance: '/payments/balance',
         start: '/losers-lotto/start',
         ongoing: '/losers-lotto/ongoing',
         pick: '/losers-lotto/pick',
@@ -68,8 +71,12 @@ class GameApiRemote extends RemoteResource implements GameApiInterface {
     }
 
     ongoing(): Promise<GameApiGameModelInterface> {
+        var data: GameApiOngoingGameRequestInterface = {
+            gameId: this.gameCode
+        };
+
         return this
-            .get<GameApiGameModelInterface>(this.urls.ongoing);
+            .get<GameApiGameModelInterface>(this.urls.ongoing, data);
     }
 
     pick(value: number[]): Promise<GameApiGameModelInterface> {
@@ -80,6 +87,11 @@ class GameApiRemote extends RemoteResource implements GameApiInterface {
 
         return this
             .post<GameApiGameModelInterface>(this.urls.pick, data);
+    }
+
+    balance(): Promise<GameApiPaymentsResponseInterface> {
+        return this
+            .get<GameApiPaymentsResponseInterface>(this.urls.balance);
     }
 
     forfeit(): Promise<any> {
