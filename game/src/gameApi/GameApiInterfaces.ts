@@ -40,8 +40,15 @@ interface GameApiNewGameResponseInterface {
 
 interface GameApiOngoingGameRequestInterface {
     gameId: string;
+    ongoing?: boolean;
 }
 
+interface GameApiOngoingGameResponseInterface {
+    gameId: string,
+    gameInstanceId: string,
+    state: GameApiGameModelInterface
+}
+ 
 interface GameApiGameModelInterface {
     bet: {
         CASH: number
@@ -67,7 +74,7 @@ interface GameApiPaymentsResponseInterface {
 
 interface GameApiValidationErrorInterface {
     ValidationError?: string;
-} 
+}
 
 interface GameApiInterface {
     sessionId: string;
@@ -89,7 +96,7 @@ interface GameApiInterface {
 
     config(): Promise<GameApiGameConfigInterface>
     start(): Promise<GameApiNewGameResponseInterface>
-    ongoing(): Promise<GameApiGameModelInterface>
+    ongoing(): Promise<GameApiOngoingGameResponseInterface>
     pick(value: number[]): Promise<GameApiGameModelInterface>;
     balance(): Promise<GameApiPaymentsResponseInterface>;
     forfeit(): Promise<any>;
@@ -105,6 +112,7 @@ export {
     GameApiNewGameRequestInterface,
     GameApiNewGameResponseInterface,
     GameApiOngoingGameRequestInterface,
+    GameApiOngoingGameResponseInterface,
     GameApiGameModelInterface,
     GameApiGameConfigInterface,
     GameApiPickRequestInterface,

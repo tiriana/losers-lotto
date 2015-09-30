@@ -16,7 +16,7 @@ import {welcome} from './scenes/welcome';
 
 import {background} from './components/common/background';
 
-import * as manager from './flow/manager';
+import * as lottoBallManager from './flow/lottoBallManager';
 
 function game() {
     audio.play('silence', true);

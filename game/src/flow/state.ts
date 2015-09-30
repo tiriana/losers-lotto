@@ -1,9 +1,14 @@
+import dustEvent = DUST.event;
+
+import {GameApiGameModelInterface} from '../gameApi/GameApiInterfaces';
 import {GameTypes} from './GameTypes';
 import {Match} from './Match';
+import {Events} from './Events';
 
 class State {
     gameType: GameTypes;
-    _match: Match;
+    private _match: Match;
+    private _gameState: GameApiGameModelInterface;
 
     constructor() {
     }
@@ -24,12 +29,41 @@ class State {
         }
     }
 
+    set gameState(state: GameApiGameModelInterface) {
+        this._gameState = state;
+        dustEvent.broadcast(Events[Events.gameSetupState], this._gameState);
+    }
+
+    get gameState() {
+        if (!this._gameState) {
+            throw (new Error('Game state not initialized'));
+        }
+
+        return this._gameState;
+    }
+
     get match(): Match {
         if (this._match) {
             return this._match;
         } else {
             throw (new Error('No match created'));
         }
+    }
+
+    hasMatch() {
+        if (this._match) {
+            return true;
+        }
+
+        return false;
+    }
+
+    hasGameState() {
+        if (this._gameState) {
+            return true;
+        }
+
+        return false;
     }
 }
 

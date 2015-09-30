@@ -3,18 +3,19 @@
 import {RemoteResource} from './RemoteResource';
 
 import {
-GameApiPayTableItemInterface,
-GameApiPickResultInterface,
-GameApiSessionRequestInterface,
-GameApiSessionResponseInterface,
-GameApiNewGameRequestInterface,
-GameApiNewGameResponseInterface,
-GameApiOngoingGameRequestInterface,
-GameApiGameModelInterface,
-GameApiGameConfigInterface,
-GameApiPickRequestInterface,
-GameApiPaymentsResponseInterface,
-GameApiInterface
+    GameApiPayTableItemInterface,
+    GameApiPickResultInterface,
+    GameApiSessionRequestInterface,
+    GameApiSessionResponseInterface,
+    GameApiNewGameRequestInterface,
+    GameApiNewGameResponseInterface,
+    GameApiOngoingGameRequestInterface,
+    GameApiOngoingGameResponseInterface,
+    GameApiGameModelInterface,
+    GameApiGameConfigInterface,
+    GameApiPickRequestInterface,
+    GameApiPaymentsResponseInterface,
+    GameApiInterface
 } from './GameApiInterfaces';
 
 class GameApiRemote extends RemoteResource implements GameApiInterface {
@@ -69,14 +70,15 @@ class GameApiRemote extends RemoteResource implements GameApiInterface {
                 return startResponse;
             })
     }
-
-    ongoing(): Promise<GameApiGameModelInterface> {
+ 
+    ongoing(): Promise<GameApiOngoingGameResponseInterface> {
         var data: GameApiOngoingGameRequestInterface = {
             gameId: this.gameCode
+            // ongoing: true
         };
 
         return this
-            .get<GameApiGameModelInterface>(this.urls.ongoing, data);
+            .get<GameApiOngoingGameResponseInterface>(this.urls.ongoing, data);
     }
 
     pick(value: number[]): Promise<GameApiGameModelInterface> {

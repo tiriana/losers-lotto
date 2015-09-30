@@ -1,13 +1,23 @@
 /// <reference path="../../references" />
 
+import dustEvent = DUST.event;
 import publisherEvents = DUST.PLUGINS.PUBLISHERAPI.events;
 import Loader = DUST.PLUGINS.LOADERS.Hog;
 import rotation = DUST.PLUGINS.ROTATION.classic;
 
+import {Events} from './flow/Events';
 import {game} from './game';
 import {assetList} from './assetList';
 import {viewPort} from './viewPort';
 import {api} from './api';
+import {gameApi} from './gameApi';
+import {manager} from './flow/manager';
+import {lottoBallManager} from './flow/lottoBallManager';
+
+import {
+    GameApiValidationErrorInterface,
+    GameApiOngoingGameResponseInterface
+} from './gameApi/GameApiInterfaces';
 
 var init = (function() {
     var settings = {
@@ -16,9 +26,27 @@ var init = (function() {
         loaderAssetPath: 'build',
         viewPort: viewPort,
         game: () => {
+            lottoBallManager();
+            manager();
             rotation().handleRotation();
 
-            game();
+            gameApi
+                .sessionGuest()
+                .then(() => {
+                    return gameApi.config();
+                })
+                .then(() => {
+                    return gameApi.ongoing();
+                })
+                .then((ongoingGameResponse: GameApiOngoingGameResponseInterface) => {
+                    game();
+                    if (ongoingGameResponse.gameInstanceId) {
+                        dustEvent.broadcast(Events[Events.gameGotState], ongoingGameResponse.state);
+                    }
+                })
+                .catch((error: GameApiValidationErrorInterface) => {
+                    //TODO: handle ongoing error
+                });
         },
         events: {
             GAME_STARTING: publisherEvents.GAME_STARTING,

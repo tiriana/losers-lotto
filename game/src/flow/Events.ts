@@ -1,4 +1,8 @@
 enum Events {
+    // state events
+    gameGotState,
+    gameSetupState,
+    
     //setup events for different kind of games        
     gameSetupSingle,
     
