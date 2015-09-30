@@ -27,8 +27,8 @@ function game() {
     match();
     lobby();
     standings();
-    welcome();
-    soundScreen().show();
+    welcome().show();
+    //soundScreen().show();
 }
 
 export {game}
