@@ -52,6 +52,10 @@ class Manager {
             }
         });
 
+        dustEvent.on(Events[Events.matchStared], (match) => {
+
+        });
+
         dustEvent.on(Events[Events.matchRequestedEnd], () => {
             gameApi
                 .forfeit()
@@ -63,16 +67,16 @@ class Manager {
                 });
         });
 
-        dustEvent.on(Events[Events.matchEnded], () => {
+        dustEvent.on(Events[Events.matchEnded], (match) => {
             state.match = null;
-            dustEvent.broadcast(Events[Events.gameRequestedEnd], null);
+            dustEvent.broadcast(Events[Events.gameRequestedEnd], match);
         });
 
-        dustEvent.on(Events[Events.gameRequestedEnd], () => {
-            dustEvent.broadcast(Events[Events.gameEnded], null);
+        dustEvent.on(Events[Events.gameRequestedEnd], (match) => {
+            dustEvent.broadcast(Events[Events.gameEnded], match);
         });
 
-        dustEvent.on(Events[Events.gameEnded], () => {
+        dustEvent.on(Events[Events.gameEnded], (match) => {
             scenes.switch(List[List.standings]);
         });
     }

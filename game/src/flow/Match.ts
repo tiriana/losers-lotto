@@ -13,11 +13,11 @@ class Match {
     }
 
     start() {
-        dustEvent.broadcast(Events[Events.matchStared], null);
+        dustEvent.broadcast(Events[Events.matchStared], this);
     }
 
     stop() {
-        dustEvent.broadcast(Events[Events.matchEnded], null);
+        dustEvent.broadcast(Events[Events.matchEnded], this);
     }
 
     addPlayer(player: Player): Player {
