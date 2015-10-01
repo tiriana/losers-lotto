@@ -14,15 +14,10 @@ import {lobby} from './scenes/lobby';
 import {standings} from './scenes/standings';
 import {welcome} from './scenes/welcome';
 
-import {background} from './components/common/background';
-
-import * as lottoBallManager from './flow/lottoBallManager';
-
 function game() {
     audio.play('silence', true);
     layers();
     loop();
-    background();
 
     match();
     lobby();

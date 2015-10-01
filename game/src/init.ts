@@ -12,7 +12,8 @@ import {viewPort} from './viewPort';
 import {api} from './api';
 import {gameApi} from './gameApi';
 import {manager} from './flow/manager';
-import {lottoBallManager} from './flow/lottoBallManager';
+import {lottoBallGrid} from './components/match/lottoBallGrid';
+import {background} from './components/common/background';
 
 import {
     GameApiValidationErrorInterface,
@@ -26,7 +27,7 @@ var init = (function() {
         loaderAssetPath: 'build',
         viewPort: viewPort,
         game: () => {
-            lottoBallManager();
+            background();
             manager();
             rotation().handleRotation();
 

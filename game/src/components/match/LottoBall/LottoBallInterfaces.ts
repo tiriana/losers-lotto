@@ -19,15 +19,15 @@ interface LottoBallStateItemInterface<T> {
     disable: () => Promise<LottoBallStateItemInterface<T>>,
     enableHandler: () => Promise<LottoBallStateItemInterface<T>>
     disableHandler: () => Promise<LottoBallStateItemInterface<T>>
-    inputHandler: () => Promise<LottoBallStateItemInterface<T>>
+    inputHandler: (data?:any) => Promise<LottoBallStateItemInterface<T>>
 }
 
 interface LottoBallInterface<T> {
     setState: (state: LottoBallStates) => Promise<T>,
     ballNumber: number,
     state: LottoBallStates,
-    id: string,
-    handleInput: () => Promise<LottoBallInterface<T>>
+    id: string, 
+    handleInput: (data?:any) => Promise<LottoBallInterface<T>>
 }
 
 interface LottoBallStatesInterface<TInactive, TActivating, TActiveLucky, TActiveUnlucky> {

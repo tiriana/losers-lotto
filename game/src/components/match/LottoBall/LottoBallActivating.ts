@@ -20,20 +20,23 @@ class LottoBallActivating<T extends LottoBallInterface<Entity>> extends LottoBal
         this.ball = ball;
     }
 
-    enableHandler() {
-        //TODO: move pick to common ball manager
-        return gameApi
-            .pick([this.ball.ballNumber])
-            .then((result) => {
-                if (result.results[0].lucky) {
-                    return this.ball.setState(LottoBallStates.activeLucky);
-                }
+    inputHandler(data) {
+        var stateTransition;
 
-                return this.ball.setState(LottoBallStates.activeUnlucky);
-            })
-            .then(() => {
-                return this;
-            });
+        if (data) {
+            if (data.lucky) {
+                stateTransition = this.ball.setState(LottoBallStates.activeLucky);
+            } else {
+                stateTransition = this.ball.setState(LottoBallStates.activeUnlucky);
+            }
+
+            return stateTransition
+                .then(() => {
+                    return this;
+                });
+        }
+
+        return Promise.resolve(this);
     }
 }
 

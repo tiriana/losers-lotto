@@ -35,7 +35,7 @@ class InteractionHandler {
     protected _boundEntity: Entity;
     bound: boolean = false;
 
-    bind(entity: Entity) {
+    constructor(entity: Entity) {
         if (this.bound) {
             return;
         }
@@ -72,7 +72,6 @@ class InteractionHandler {
                 sprite.handleInteractionEnd(mouseData);
             }
         }
-
 
         sprite.touchstart = (touchData)  => {
             if (sprite.handleTouchstart) {
@@ -115,7 +114,7 @@ var defaultIsCollision = <CollisionDetector>(ax, ay, bx, by, entity: Entity) => 
     var l = (entity.sprite.width + entity.sprite.height) / 2; // avg of width and height
     var r = l * (1 + Math.SQRT2) / 4; // something between Incircle and excircles
 
-    return circleLineCollision(ax, ay, bx, by, this.x, this.y, r);
+    return true;
 }
 
 /**
@@ -188,7 +187,7 @@ class InteractionManager {
             }
 
             if (this.draw) {
-
+console.log('draw');
                 this.draw(line, sprite._lineLength[id], id);
             }
 
@@ -200,9 +199,7 @@ class InteractionManager {
             sprite._lineLength[touchData.data.identifier] = null;
         };
 
-        var handler = new InteractionHandler();
-        handler.bind(sprite);
-
+        var handler = new InteractionHandler(bottom);
     }
 }
 

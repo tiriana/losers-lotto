@@ -14,7 +14,7 @@ class LottoBallStateEntity<T extends Entity> extends Entity implements LottoBall
         return Promise.resolve(this);
     }
 
-    inputHandler() {
+    inputHandler(data?:any) {
         return this.mockupHandler();
     }
 

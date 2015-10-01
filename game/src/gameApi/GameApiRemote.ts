@@ -73,8 +73,8 @@ class GameApiRemote extends RemoteResource implements GameApiInterface {
  
     ongoing(): Promise<GameApiOngoingGameResponseInterface> {
         var data: GameApiOngoingGameRequestInterface = {
-            gameId: this.gameCode
-            // ongoing: true
+            gameId: this.gameCode,
+            ongoing: true 
         };
 
         return this

@@ -36,15 +36,13 @@ class Manager {
         });
 
         dustEvent.on(Events[Events.matchRequestedStart], () => {
-            if (state.hasGameState) {
+            if (state.hasGameState()) {
                 this.runMatch();
             } else {
                 gameApi
                     .start()
                     .then((gameState) => {
                         state.gameState = gameState;
-
-                        this.runMatch();
                     })
                     .catch((error: GameApiValidationErrorInterface) => {
                         //TODO: handle start error

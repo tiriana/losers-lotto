@@ -124,6 +124,7 @@
 /// <reference path="node_modules/@thelittlehog/tlh-dust/def/physics/world.d.ts" />
 /// <reference path="node_modules/@thelittlehog/tlh-dust/def/sceneEvents.d.ts" />
 /// <reference path="node_modules/@thelittlehog/tlh-dust/def/scenes.d.ts" />
+/// <reference path="node_modules/@thelittlehog/tlh-dust/def/utils/ensureInt.d.ts" />
 /// <reference path="node_modules/@thelittlehog/tlh-dust/vendor/bezier-easing.d.ts" />
 /// <reference path="node_modules/@thelittlehog/tlh-dust/vendor/bluebird.d.ts" />
 /// <reference path="node_modules/@thelittlehog/tlh-dust/vendor/howler.d.ts" />
