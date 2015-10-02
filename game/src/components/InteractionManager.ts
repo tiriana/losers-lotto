@@ -56,18 +56,20 @@ class InteractionHandler {
         var sprite = <any>this._boundEntity.sprite;
 
         sprite.mousedown = (mouseData) => {
+            sprite.mouseInProgress = true;
             if (sprite.handleTouchstart) {
                 sprite.handleTouchstart(mouseData);
             }
         }
 
         sprite.mousemove = (mouseData) => {
-            if (sprite.handleInteractionMove) {
+            if (sprite.mouseInProgress && sprite.handleInteractionMove) {
                 sprite.handleInteractionMove(mouseData);
             }
         }
 
         sprite.mouseup = (mouseData) => {
+            sprite.mouseInProgress = false;
             if (sprite.handleInteractionEnd) {
                 sprite.handleInteractionEnd(mouseData);
             }
@@ -128,6 +130,7 @@ class InteractionManager {
     protected container: Entity;
 
     constructor(entities: Entity[] = [], isColision: CollisionDetector = defaultIsCollision, draw?: LineDrawer) {
+        isColision = isColision || defaultIsCollision;
         this.entities = entities;
         this.isColision = isColision;
         this.draw = draw;
@@ -187,7 +190,6 @@ class InteractionManager {
             }
 
             if (this.draw) {
-console.log('draw');
                 this.draw(line, sprite._lineLength[id], id);
             }
 

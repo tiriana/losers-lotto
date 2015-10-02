@@ -9,6 +9,7 @@ import {viewPort} from '../../viewPort';
 import {InteractionManager} from '../InteractionManager';
 import {LottoBall} from './LottoBall/LottoBall';
 import {match} from '../../scenes/match';
+import {SimpleLineDrawer} from '../SimpleLineDrawer';
 
 class LottoBallGrid {
     lottoBalls: LottoBall[] = [];
@@ -36,7 +37,7 @@ class LottoBallGrid {
                 }
             });
 
-            this.interactionManager = new InteractionManager(this.lottoBalls);
+            this.interactionManager = new InteractionManager(this.lottoBalls, null, SimpleLineDrawer.getLineDrawer(this.lottoBalls[0].sprite.container.sprite));
             this.interactionManager.onCollision = this.handleLottoBallsState;
 
             this.handleLottoBallsState(lottoBallsToUpdate);
@@ -66,7 +67,7 @@ class LottoBallGrid {
                 });
 
                 lottoBallsToUpdate.forEach((lottoBallToUpdate) => {
-                    lottoBallToUpdate.handleInput({ lucky: resultMap[lottoBallToUpdate.ballNumber] });
+                    lottoBallToUpdate.handleInput({lucky: resultMap[lottoBallToUpdate.ballNumber]});
                 });
             });
     }
