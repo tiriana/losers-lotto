@@ -48,7 +48,7 @@ class SimpleLineDrawer {
         return sprite;
     }
 
-    public static colors: number[] = [0xFFFFFF, 0x00FFFF, 0xFF00FF, 0xFFFF00, 0xFF0000, 0x00FF00, 0x0000FF];
+    public static colors: number[] = [0xFFFFFF, 0xFFFFFF, 0x00FFFF, 0xFF00FF, 0xFFFF00, 0xFF0000, 0x00FF00, 0x0000FF];
 
     public static getLineDrawer(parent: Sprite) {
         return (segment: number[], segmentNumberInLine: number, lineId: number) => {
@@ -57,7 +57,7 @@ class SimpleLineDrawer {
     }
 
     public static drawLine(parent: Sprite, ax: number, ay: number, bx: number, by: number, segmentNumberInLine: number, lineId: number) {
-        var color = SimpleLineDrawer.colors[lineId];
+        var color = SimpleLineDrawer.colors[(~~Math.abs(lineId) ) % SimpleLineDrawer.colors.length];
 
         var line;
 

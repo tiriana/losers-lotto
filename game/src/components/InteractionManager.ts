@@ -115,8 +115,21 @@ class InteractionHandler {
 var defaultIsCollision = <CollisionDetector>(ax, ay, bx, by, entity: Entity) => {
     var l = (entity.sprite.width + entity.sprite.height) / 2; // avg of width and height
     var r = l * (1 + Math.SQRT2) / 4; // something between Incircle and excircles
+    r /= 1.5;
 
-    return true;
+    var cx = entity.x;
+    var cy = entity.y;
+
+    if (!entity.sprite.collisionCircle) {
+        var pixiCircle = new PIXI.Graphics();
+        pixiCircle.lineStyle(2, 0xFF00FF);  //(thickness, color)
+        pixiCircle.drawCircle(cx, cy, r);   //(x,y,radius)
+        pixiCircle.endFill();
+        entity.sprite.container.sprite.addChild(pixiCircle);
+        entity.sprite.collisionCircle = pixiCircle;
+    }
+
+    return circleLineCollision(ax, ay, bx, by, cx, cy, r);
 }
 
 /**
@@ -175,6 +188,8 @@ class InteractionManager {
             sprite._lineLength[id] = sprite._lineLength[id] || 0;
             sprite._lineLength[id]++;
 
+            console.log('_line ' + id + ' length', sprite._lineLength[id]);
+
             var line: number[];
 
             var px = prevPos.x;
@@ -197,8 +212,9 @@ class InteractionManager {
         };
 
         sprite.handleInteractionEnd = (touchData) => {
-            sprite._prevPos[touchData.data.identifier] = null;
-            sprite._lineLength[touchData.data.identifier] = null;
+            var id = touchData.data.identifier || -1;
+            sprite._prevPos[id] = null;
+            sprite._lineLength[id] = null;
         };
 
         var handler = new InteractionHandler(bottom);
