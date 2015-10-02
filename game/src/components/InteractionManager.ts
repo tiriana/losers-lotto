@@ -3,6 +3,7 @@
 import Entity = DUST.GRAPHIC.Entity;
 import Sprite = PIXI.Sprite;
 import rotation = DUST.PLUGINS.ROTATION.classic;
+import mainScene = DUST.GRAPHIC.mainScene;
 
 import {bottom} from '../layers/bottom';
 import {viewPort} from '../viewPort';
@@ -120,7 +121,7 @@ var defaultIsCollision = <CollisionDetector>(ax, ay, bx, by, entity: Entity) => 
     var cx = entity.x;
     var cy = entity.y;
 
-    if (!entity.sprite.collisionCircle) {
+    if (false && !entity.sprite.collisionCircle) {// change fallse to true if you want to see actual hitboxes
         var pixiCircle = new PIXI.Graphics();
         pixiCircle.lineStyle(2, 0xFF00FF);  //(thickness, color)
         pixiCircle.drawCircle(cx, cy, r);   //(x,y,radius)
@@ -188,8 +189,6 @@ class InteractionManager {
             sprite._lineLength[id] = sprite._lineLength[id] || 0;
             sprite._lineLength[id]++;
 
-            console.log('_line ' + id + ' length', sprite._lineLength[id]);
-
             var line: number[];
 
             var px = prevPos.x;
@@ -199,7 +198,10 @@ class InteractionManager {
             var y = pos.y;
 
             if (rotation().isRotated()) {
-                line = [-py, -px, -y, -x];
+                var magicVector = [300, 280];
+                var pos2 = touchData.data.getLocalPosition(mainScene);
+
+                line = [-py + magicVector[0], -px + magicVector[1], -y + magicVector[0], -x + magicVector[1]];
             } else {
                 line = [px, py, x, y];
             }

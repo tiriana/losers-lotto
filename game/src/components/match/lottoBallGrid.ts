@@ -15,6 +15,8 @@ class LottoBallGrid {
     lottoBalls: LottoBall[] = [];
     interactionManager: InteractionManager;
     once: boolean;
+    qtyPerRow: number [] = [8, 8, 9, 9, 8, 7];
+    offsets: number [] = [-4.5, -4, -4.5, -4, -3.5, -3];
     ballNumberCache: {} = {};
 
     constructor() {
@@ -77,20 +79,31 @@ class LottoBallGrid {
     }
 
     createLottoBalls(state: GameApiGameModelInterface) {
+        var w: number = 100, colNum: number;
+        var offset: number;
+        var num: number = 1;
+
+        var thisShouldBeLootoBallsContainerPosition = {
+            x: 50,
+            y: viewPort.height / 7
+        };
+
         var lottoBallNumbers = state.cardNumbers;
 
-        lottoBallNumbers.forEach((lottoBallNumber, i) => {
-            let lottoBalInstance = new LottoBall(lottoBallNumber),
-                distanceX = viewPort.width / 7,
-                distanceY = viewPort.height / 7,
-                x = -viewPort.width / 2 + distanceX * ((i) % 7) + distanceX / 2,
-                y = distanceY * Math.floor((i) / 7) + distanceY / 2;
+        this.qtyPerRow.forEach((cellsQty: number, rowNum: number) => {
+                offset = this.offsets[rowNum];
+                for (colNum = 0; colNum < cellsQty; colNum++) {
 
-            lottoBalInstance.x = x;
-            lottoBalInstance.y = y;
+                    let lottoBalInstance = new LottoBall(lottoBallNumbers[num++]);
 
-            this.lottoBalls.push(lottoBalInstance);
-        });
+                    lottoBalInstance.x = thisShouldBeLootoBallsContainerPosition.x + w * (offset + colNum);
+                    lottoBalInstance.y = thisShouldBeLootoBallsContainerPosition.y + rowNum * w;
+
+                    this.lottoBalls.push(lottoBalInstance);
+                }
+
+            }
+        );
     }
 
     getLottoBalls() {
