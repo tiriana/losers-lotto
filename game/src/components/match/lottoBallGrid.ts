@@ -15,6 +15,7 @@ class LottoBallGrid {
     lottoBalls: LottoBall[] = [];
     interactionManager: InteractionManager;
     once: boolean;
+    ballNumberCache: {} = {};
 
     constructor() {
         dustEvent.on(Events[Events.gameSetupState], (state: GameApiGameModelInterface) => {
@@ -38,25 +39,28 @@ class LottoBallGrid {
             });
 
             this.interactionManager = new InteractionManager(this.lottoBalls, null, SimpleLineDrawer.getLineDrawer(this.lottoBalls[0].sprite.container.sprite));
-            this.interactionManager.onCollision = this.handleLottoBallsState;
+            this.interactionManager.onCollision = (lottoBallsToUpdate: LottoBall[]) => {
+                this.handleLottoBallsState(lottoBallsToUpdate);
+            };
 
             this.handleLottoBallsState(lottoBallsToUpdate);
         });
     }
 
     handleLottoBallsState(lottoBallsToUpdate: LottoBall[]) {
-        //TODO: hookup proper colision in interaction manager
-        //TODO: don't duplicate scratch in requests (scratched map cache)
         var ballNumbers = [],
             activating = [],
             resultMap = {};
 
         lottoBallsToUpdate.forEach((lottoBallToUpdate) => {
-            ballNumbers.push(lottoBallToUpdate.ballNumber);
-            activating.push(lottoBallToUpdate.handleInput());
+            if (!this.ballNumberCache[lottoBallToUpdate.ballNumber]) {
+                this.ballNumberCache[lottoBallToUpdate.ballNumber] = lottoBallToUpdate.ballNumber;
+                ballNumbers.push(lottoBallToUpdate.ballNumber);
+                activating.push(lottoBallToUpdate.handleInput());
+            }
         });
 
-        Promise
+        ballNumbers.length && Promise
             .all(activating)
             .then(() => {
                 return gameApi.pick(ballNumbers);
@@ -67,7 +71,7 @@ class LottoBallGrid {
                 });
 
                 lottoBallsToUpdate.forEach((lottoBallToUpdate) => {
-                    lottoBallToUpdate.handleInput({lucky: resultMap[lottoBallToUpdate.ballNumber]});
+                    lottoBallToUpdate.handleInput({ lucky: resultMap[lottoBallToUpdate.ballNumber] });
                 });
             });
     }
